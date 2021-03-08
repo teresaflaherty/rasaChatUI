@@ -1,0 +1,17 @@
+#chatbox {
+    height: 200px;
+    width: 400px;
+    overflow-y: scroll;
+}
+
+body {
+    background-color: lightblue;
+}
+
+ul {
+    background-color: white;
+}
+
+#chat-input {
+    width: 400px;
+}

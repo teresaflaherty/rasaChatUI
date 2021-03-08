@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Rasa Emotional Bot Chat</title>
+        <link rel="stylesheet" href="/style/style.css">
+    </head>
+    <body>
+        <h1>Rasa Emotional Bot Chat</h1>
+        <div id="app">
+            <div v-if="state == 0">
+                <h3>Welcome! What is your name?</h3>
+                <form @submit.prevent="setName">
+                    <input type="text" placeholder="John Smith" v-model:value="name" />
+                    <input type="submit" value="Join" />
+                </form>
+            </div>
+            <div v-if="state == 1">
+                <ul id="chatbox">
+                    <li v-for="message in messages">
+                        <b>{{ message.name }}</b>: {{ message.message }}
+                    </li>
+                </ul>
+                <form @submit.prevent="sendMessage">
+                    <input type="text" placeholder="Message..." v-model:value="message" id="chat-input" />
+                    <input type="submit" value="Send" id="send-button" />
+                </form>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = null;
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: '',
+                    messages: [],
+                    name: '',
+                    state: 0
+                },
+                methods: {
+                    sendMessage: function() {
+                        socket.emit('message', this.message, this.emotional_matrix);
+                        this.message = '';
+                    },
+                    setName: function() {
+                        socket.emit('join', this.name);
+                        this.name = '';
+                        this.state = 1;
+                    }
+                },
+                created: function () {
+                    socket = io();
+                },
+                mounted: function() {
+                    socket.on('message', function (message) {
+                        app.messages.push(message);
+                        app.$nextTick(function () {
+                            var messageBox = document.getElementById('chatbox');
+                            messageBox.scrollTop = messageBox.scrollHeight;
+                        })
+                    })
+                }
+            });
+        </script>
+    </body>
+</html>
