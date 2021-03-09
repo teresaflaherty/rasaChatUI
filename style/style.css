@@ -1,26 +1,164 @@
-#chatbox {
-    height: 200px;
-    width: 400px;
-    overflow-y: scroll;
-}
-
 body {
+    font-family: Roboto, sans-serif;
     background-color: lightblue;
 }
 
-ul {
+h1 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h3 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 40px;
+}
+
+#name-form {
+    margin: auto;
+    width: 30%;
+    padding: 10px;  
+}
+
+#name-input {
+    display: block;
+    height: 30px;
+    width: 100%;
+    border-radius: 10px;
+    border-width: 0px;
+    font-size: 21px;
+    padding-left: 5px;
+}
+
+#connect-button {
+    display: block;
+    margin: auto;
+    height: 30px;
+    width: 30%;
+    min-width: 100px;
+    border-radius: 10px;
+    font-size: 21px;
+    border-width: 0px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#connect-button:hover {
+    background: darkgray;
+}
+
+#chatbox {
+    height: 500px;
+    width: 60%;
+    margin: auto;
+    overflow-y: scroll;
     background-color: white;
+    list-style: none;
+    border-radius: 10px;
+}
+
+#message {
+    margin-top: 8px;
+}
+
+#message-box {
+    margin: auto;
+    text-align: center;
+    width: 63%;
+    padding-top: 10px;
 }
 
 #chat-input {
-    width: 400px;
+    height: 25px;
+    width: 85%;
+    border-radius: 10px;
+    border-width: 0px;
 }
 
-#matrix-switch input {
-    display: inline-block;
-    margin-right: 10px;
+#send-button {
+    height: 25px;
+    width: 12%;
+    border-radius: 10px;
+    border-width: 0px;
+    cursor: pointer;
 }
 
-#matrix-switch label {
-    display: inline-block;
+#send-button:hover {
+    background: darkgray;
 }
+
+#matrix-switch {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
+#matrix-label {
+    margin-top: 10px;
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+/* Slider code from https://www.w3schools.com/howto/howto_css_switch.asp */
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 1px;
+    bottom: 1px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }

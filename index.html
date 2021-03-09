@@ -4,34 +4,45 @@
         <meta charset="utf-8">
         <title>Rasa Emotional Bot Chat</title>
         <link rel="stylesheet" href="/style/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
+        <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
     </head>
     <body>
-        <h1>Rasa Emotional Bot Chat</h1>
+        <div id="header">
+            <h1>Rasa Emotional Bot Chat</h1>
+        </div>
         <div id="app">
             
             <div v-if="state == 0">
                 <h3>Welcome! What is your name?</h3>
-                <form @submit.prevent="setName">
-                    <input type="text" placeholder="John Smith" v-model:value="name" />
-                    <input type="submit" value="Join" />
-                </form>
+                <div id="name-form">
+                    <form @submit.prevent="setName">
+                        <input type="text" placeholder="John Smith" v-model:value="name" id="name-input" />
+                        <input type="submit" value="Connect" id="connect-button" />
+                    </form>
+                </div>
             </div>
             <div v-if="state == 1">
+                <ul id="chatbox">
+                    <li v-for="message in messages">
+                        <div id="message">
+                            <b>{{ message.name }}</b>: {{ message.message }}
+                        </div>
+                    </li>
+                </ul>
+                <div id="message-box">
+                    <form @submit.prevent="sendMessage">
+                        <input type="text" placeholder="Message..." v-model:value="message" id="chat-input" />
+                        <button type="submit" id="send-button"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
                 <div id="matrix-switch">
-                    <label class="switch">Emotional Matrix</label>
+                    <p id="matrix-label">Emotional Matrix Enabled: </p>
+                    <label class="switch">
                         <input type="checkbox" value="on" v-model="emotionalMatrix" />
                         <span class="slider round"></span>
                     </label>
                 </div>
-                <ul id="chatbox">
-                    <li v-for="message in messages">
-                        <b>{{ message.name }}</b>: {{ message.message }}
-                    </li>
-                </ul>
-                <form @submit.prevent="sendMessage">
-                    <input type="text" placeholder="Message..." v-model:value="message" id="chat-input" />
-                    <input type="submit" value="Send" id="send-button" />
-                </form>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
