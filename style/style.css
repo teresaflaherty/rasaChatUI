@@ -15,3 +15,12 @@ ul {
 #chat-input {
     width: 400px;
 }
+
+#matrix-switch input {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#matrix-switch label {
+    display: inline-block;
+}

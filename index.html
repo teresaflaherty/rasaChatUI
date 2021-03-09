@@ -8,6 +8,7 @@
     <body>
         <h1>Rasa Emotional Bot Chat</h1>
         <div id="app">
+            
             <div v-if="state == 0">
                 <h3>Welcome! What is your name?</h3>
                 <form @submit.prevent="setName">
@@ -16,6 +17,12 @@
                 </form>
             </div>
             <div v-if="state == 1">
+                <div id="matrix-switch">
+                    <label class="switch">Emotional Matrix</label>
+                        <input type="checkbox" value="on" v-model="emotionalMatrix" />
+                        <span class="slider round"></span>
+                    </label>
+                </div>
                 <ul id="chatbox">
                     <li v-for="message in messages">
                         <b>{{ message.name }}</b>: {{ message.message }}
@@ -37,11 +44,12 @@
                     message: '',
                     messages: [],
                     name: '',
-                    state: 0
+                    state: 0,
+                    emotionalMatrix: ""
                 },
                 methods: {
                     sendMessage: function() {
-                        socket.emit('message', this.message, this.emotional_matrix);
+                        socket.emit('message', this.message, this.emotionalMatrix);
                         this.message = '';
                     },
                     setName: function() {
