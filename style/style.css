@@ -73,6 +73,7 @@ h3 {
     width: 85%;
     border-radius: 10px;
     border-width: 0px;
+    padding-left: 5px;
 }
 
 #send-button {
