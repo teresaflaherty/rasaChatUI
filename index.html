@@ -24,10 +24,20 @@
             </div>
             <div v-if="state == 1">
                 <ul id="chatbox">
-                    <li v-for="message in messages">
-                        <div id="message">
-                            <b>{{ message.name }}</b>: {{ message.message }}
+                    <li class="message" v-for="(message) in messages" :key="idx" :class="message.author">
+                        <div class="text">
+                            <div class="icon" v-if="message.author == 'bot'">
+                                <img src="/Icons/bot.png" alt="bot" width="30"></img>
+                            </div>
+                            <div class="icon" v-if="message.author == 'user'">
+                                <img src="/Icons/user.png" alt="user" width="30"></img>
+                            </div>
+                            
+                            <p>
+                                <span>{{ message.text }}</span>
+                            </p>
                         </div>
+                        
                     </li>
                 </ul>
                 <div id="message-box">
@@ -74,7 +84,12 @@
                 },
                 mounted: function() {
                     socket.on('message', function (message) {
-                        app.messages.push(message);
+                        if (message.name == 'RasaBot') {
+                            app.messages.push({text: message.message, name: message.name, author:'bot'});
+                        }
+                        else {
+                            app.messages.push({text: message.message, name: message.name, author:'user'});
+                        }
                         app.$nextTick(function () {
                             var messageBox = document.getElementById('chatbox');
                             messageBox.scrollTop = messageBox.scrollHeight;

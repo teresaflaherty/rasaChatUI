@@ -14,6 +14,11 @@ h3 {
     padding-top: 40px;
 }
 
+h5 {
+  margin-top: 0px;
+  margin-bottom: 1px;
+}
+
 #name-form {
     margin: auto;
     width: 30%;
@@ -55,10 +60,48 @@ h3 {
     background-color: white;
     list-style: none;
     border-radius: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+#chatbox p {
+  padding: 8px;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 2px;
 }
 
-#message {
-    margin-top: 8px;
+#chatbox .bot p {
+    background: rgb(165, 164, 164);
+    float: left;
+    width: 70%
+}
+  
+#chatbox .bot .text {
+  float: left;
+}
+
+#chatbox .bot .icon {
+  padding-top: 20px;
+  padding-right: 5px;
+  float: left;
+}
+
+#chatbox .user p {
+  background: rgb(78, 150, 218);
+  float: right;
+}
+
+#chatbox .user .text {
+float: right;
+}
+
+#chatbox .user .icon {
+padding-top: 20px;
+padding-left: 5px;
+float: right;
 }
 
 #message-box {

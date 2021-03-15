@@ -5,6 +5,7 @@ const io = require('socket.io')(http)
 const fetch = require("node-fetch")
 
 app.use('/style', express.static(__dirname + '/style'))
+app.use('/Icons', express.static(__dirname + '/Icons'))
 app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'))
 
 io.on('connection', (socket) => {
@@ -43,4 +44,3 @@ io.on('connection', (socket) => {
 })
 
 http.listen(3000, () => console.log('Listening on port 3000'))
-
